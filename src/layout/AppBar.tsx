@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppBar, TitlePortal } from 'react-admin';
+import { AppBar, TitlePortal, Title } from 'react-admin';
 import { Box, useMediaQuery, Theme } from '@mui/material';
 
 import Logo from './Logo';
@@ -10,8 +10,8 @@ const CustomAppBar = () => {
     );
     return (
         <AppBar color="secondary" elevation={1}>
-            <TitlePortal />
-            {isLargeEnough && <Logo />}
+            <Box flex="1%" />
+            <Logo />
             {isLargeEnough && <Box component="span" sx={{ flex: 1 }} />}
         </AppBar>
     );

@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import LabelIcon from '@mui/icons-material/Label';
 
 import {
-    useTranslate,
     DashboardMenuItem,
     MenuItemLink,
     MenuProps,
@@ -22,7 +21,6 @@ const Menu = ({ dense = false }: MenuProps) => {
         menuSales: true,
         menuCustomers: true,
     });
-    const translate = useTranslate();
     const [open] = useSidebarState();
 
     const handleToggle = (menu: MenuName) => {
@@ -51,9 +49,9 @@ const Menu = ({ dense = false }: MenuProps) => {
                 dense={dense}
             >
                 <MenuItemLink
-                    to="/daily-trade-report"
+                    to="/reports/daily-trade"
                     state={{ _scrollToTop: true }}
-                    primaryText="Daily Trade Report"
+                    primaryText="Daily Trade"
                     leftIcon={<reports.icon />}
                     dense={dense}
                 />

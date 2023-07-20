@@ -1,3 +1,5 @@
+.phony: help install dev shell serve build lint type-check test format
+
 help:
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
@@ -27,6 +29,9 @@ install: package.json ## install dependencies
 dev: ## run the dev environment
 	@$(CMD_PREFIX) yarn dev
 
+shell: ## open shell in a container
+	@$(CMD_PREFIX) bash
+
 serve: ## run the production environment
 	@$(CMD_PREFIX) yarn serve
 
@@ -47,3 +52,7 @@ test: lint type-check ## run all tests
 format: ## format the code
 	@echo "Running formatter..."
 	@$(CMD_PREFIX) yarn format
+
+clean: ## clean the build directory
+	@echo "Cleaning..."
+	@rm -rf dist

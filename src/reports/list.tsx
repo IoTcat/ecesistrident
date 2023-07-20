@@ -5,7 +5,7 @@ import {
   //TextField,
 } from "react-admin";
 
-export const DailyTradeReport = () => (
+export const DailyTrade = () => (
   <List>
     <ListGuesser />
   </List>

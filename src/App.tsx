@@ -5,7 +5,7 @@ import { lightTheme } from "./layout/theme";
 import { Login, Layout } from './layout';
 
 
-import DailyTradeReport from "./reports";
+import DailyTrade from "./reports";
 
 export const App = () => (
   <Admin dataProvider={dataProvider} theme={lightTheme}
@@ -13,6 +13,6 @@ export const App = () => (
   authProvider={authProvider}
   loginPage={Login}
   >
-    <Resource name="Daily Trade Report" {...DailyTradeReport} />
+    <Resource name="reports/daily-trade" options={{ label: 'Orders' }} {...DailyTrade} /> 
   </Admin>
 );

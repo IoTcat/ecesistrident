@@ -1,10 +1,10 @@
 import icon from '@mui/icons-material/Article';
 
-import {DailyTradeReport} from './list';
+import {DailyTrade} from './list';
 
 
 const resource = {
-    list: DailyTradeReport,
+    list: DailyTrade,
     icon: icon,
 };
 
