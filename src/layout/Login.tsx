@@ -3,10 +3,12 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+
 import Logo from './Logo';
 
 import {
-    Button,
     Card,
     CardActions,
     CircularProgress,
@@ -30,6 +32,17 @@ const Login = () => {
     const notify = useNotify();
     const login = useLogin();
     const location = useLocation();
+
+    React.useEffect(() => {
+        fetch(import.meta.env.VITE_BACK_END_URL+'/user', { method: 'GET'})
+        .then(response => response.json())
+        .then((data) => {
+            console.log(data)
+        })
+        .catch((e) => {
+            console.error(e)
+        });
+    }, []);
 
     const handleSubmit = (auth: FormValues) => {
         setLoading(true);
@@ -92,7 +105,7 @@ const Login = () => {
                             color: theme => theme.palette.grey[500],
                         }}
                     >
-                        Hint: demo / demo
+                        
                     </Box>
                     <Box sx={{ padding: '0 1em 1em 1em' }}>
                         <Box sx={{ marginTop: '1em' }}>
@@ -128,6 +141,16 @@ const Login = () => {
                                 <CircularProgress size={25} thickness={2} />
                             )}
                             {translate('ra.auth.sign_in')}
+                        </Button>
+                    </CardActions>
+                    <CardActions sx={{ padding: '0 1em 1em 1em' }}>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            fullWidth
+                            onClick={() => window.location.href = import.meta.env.VITE_BACK_END_URL+'/auth/signin'}
+                        >
+                            {"Sign In with Microsoft"}
                         </Button>
                     </CardActions>
                 </Card>

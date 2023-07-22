@@ -49,7 +49,7 @@ const Menu = ({ dense = false }: MenuProps) => {
                 dense={dense}
             >
                 <MenuItemLink
-                    to="/reports/daily-trade"
+                    to="/report/daily-trade"
                     state={{ _scrollToTop: true }}
                     primaryText="Daily Trade"
                     leftIcon={<reports.icon />}

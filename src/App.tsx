@@ -13,6 +13,6 @@ export const App = () => (
   authProvider={authProvider}
   loginPage={Login}
   >
-    <Resource name="reports/daily-trade" options={{ label: 'Orders' }} {...DailyTrade} /> 
+    <Resource name="report/daily-trade" options={{ label: 'Orders' }} {...DailyTrade} /> 
   </Admin>
 );
