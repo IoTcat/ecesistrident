@@ -6,6 +6,8 @@ import { useLocation } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 
+import { authProvider } from '../authProvider';
+
 import Logo from './Logo';
 
 import {
@@ -37,10 +39,14 @@ const Login = () => {
         fetch(import.meta.env.VITE_BACK_END_URL+'/user', { method: 'GET'})
         .then(response => response.json())
         .then((data) => {
+            authProvider.login(data.username);
+            login( {username: data.username} ).catch(() =>
+                notify('Invalid email or password')
+            );
             console.log(data)
         })
         .catch((e) => {
-            console.error(e)
+            console.log(e)
         });
     }, []);
 

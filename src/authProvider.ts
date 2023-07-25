@@ -9,6 +9,9 @@ export const authProvider: AuthProvider = {
     },
     // called when the user clicks on the logout button
     logout: () => {
+        if(localStorage.getItem("username")){
+            window.location.href = "/api/auth/signout";
+        }
         localStorage.removeItem("username");
         return Promise.resolve();
     },

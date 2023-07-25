@@ -1,6 +1,6 @@
 import icon from '@mui/icons-material/Article';
 
-import {DailyTrade} from './list';
+import {DailyTrade} from './DailyTrade';
 
 
 const resource = {
