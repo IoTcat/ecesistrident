@@ -3,6 +3,8 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import LabelIcon from '@mui/icons-material/Label';
 
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+
 import {
     DashboardMenuItem,
     MenuItemLink,
@@ -13,13 +15,12 @@ import {
 import reports from '../reports';
 import SubMenu from './SubMenu';
 
-type MenuName = 'menuCatalog' | 'menuSales' | 'menuCustomers';
+type MenuName = 'VIRTUAL' | 'FTR';
 
 const Menu = ({ dense = false }: MenuProps) => {
     const [state, setState] = useState({
-        menuCatalog: true,
-        menuSales: true,
-        menuCustomers: true,
+        VIRTUAL: false,
+        FTR: false,
     });
     const [open] = useSidebarState();
 
@@ -42,22 +43,40 @@ const Menu = ({ dense = false }: MenuProps) => {
         >
             {/* <DashboardMenuItem /> */}
             <SubMenu
-                handleToggle={() => handleToggle('menuCustomers')}
-                isOpen={state.menuCustomers}
-                name="Reports"
+                handleToggle={() => handleToggle('VIRTUAL')}
+                isOpen={state.VIRTUAL}
+                name="VIRTUAL"
                 icon={<reports.icon />}
                 dense={dense}
             >
                 <MenuItemLink
                     to="/report/daily-trade"
                     state={{ _scrollToTop: true }}
-                    primaryText="Daily Trade"
-                    leftIcon={<reports.icon />}
+                    primaryText="Daily Trade Report"
+                    //leftIcon={<reports.icon />}
                     dense={dense}
+                    style={{ fontSize: 13 }}
+                />
+            </SubMenu>
+            <SubMenu
+                handleToggle={() => handleToggle('FTR')}
+                isOpen={state.FTR}
+                name="FTR"
+                icon={<ShowChartIcon />}
+                dense={dense}
+            >
+                <MenuItemLink
+                    to="/report/daily-trade"
+                    state={{ _scrollToTop: true }}
+                    primaryText="Monthly Performance Report"
+                    //leftIcon={<reports.icon />}
+                    dense={dense}
+                    style={{ fontSize: 13 }}
                 />
             </SubMenu>
         </Box>
     );
 };
+
 
 export default Menu;

@@ -93,7 +93,7 @@ const Login = () => {
                     backgroundSize: 'cover',
                 }}
             >
-                <Card sx={{ minWidth: 300, marginTop: '6em' }}>
+                <Card sx={{ minWidth: 300, marginTop: '10em' }}>
                     <Box
                         sx={{
                             margin: '1em',
@@ -104,6 +104,9 @@ const Login = () => {
                         <Logo />
                     </Box>
                     <Box
+                        height={20}
+                    ></Box>
+                    {/* <Box
                         sx={{
                             marginTop: '1em',
                             display: 'flex',
@@ -148,17 +151,23 @@ const Login = () => {
                             )}
                             {translate('ra.auth.sign_in')}
                         </Button>
-                    </CardActions>
+                    </CardActions> */}
+                    
                     <CardActions sx={{ padding: '0 1em 1em 1em' }}>
                         <Button
                             variant="contained"
-                            color="secondary"
+                            color="primary"
                             fullWidth
-                            onClick={() => window.location.href = import.meta.env.VITE_BACK_END_URL+'/auth/signin'}
+                            type="submit"
+                            startIcon={<MicrosoftIcon />}
+                            // onClick={() => window.location.href = import.meta.env.VITE_BACK_END_URL+'/auth/signin'}
                         >
                             {"Sign In with Microsoft"}
                         </Button>
                     </CardActions>
+                    <Box
+                        height={50}
+                    ></Box>
                 </Card>
             </Box>
         </Form>
@@ -175,4 +184,9 @@ export default Login;
 interface FormValues {
     username?: string;
     password?: string;
+}
+
+function MicrosoftIcon() {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 23 23"><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>)
 }

@@ -31,7 +31,7 @@ const SubMenu = (props: Props) => {
             <ListItemIcon sx={{ minWidth: 5 }}>
                 {isOpen ? <ExpandMore /> : icon}
             </ListItemIcon>
-            <Typography variant="inherit" color="textSecondary">
+            <Typography variant="inherit" color="textSecondary" >
                 {translate(name)}
             </Typography>
         </MenuItem>
@@ -55,7 +55,7 @@ const SubMenu = (props: Props) => {
                         '& a': {
                             transition:
                                 'padding-left 195ms cubic-bezier(0.4, 0, 0.6, 1) 0ms',
-                            paddingLeft: sidebarIsOpen ? 4 : 2,
+                            paddingLeft: sidebarIsOpen ? 2 : 2,
                         },
                     }}
                 >
