@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 
 import { authProvider } from '../authProvider';
 
+import Cookie from 'js-cookie';
+
 import Logo from './Logo';
 
 import {
@@ -36,46 +38,54 @@ const Login = () => {
     const location = useLocation();
 
     React.useEffect(() => {
-        fetch(import.meta.env.VITE_BACK_END_URL+'/user', { method: 'GET'})
-        .then(response => response.json())
-        .then((data) => {
-            authProvider.login(data.username);
-            login( {username: data.username} ).catch(() =>
-                notify('Invalid email or password')
-            );
-            console.log(data)
-        })
-        .catch((e) => {
-            console.log(e)
-        });
+        // fetch(import.meta.env.VITE_BACK_END_URL+'/user', { method: 'GET'})
+        // .then(response => response.json())
+        // .then((data) => {
+        //     authProvider.login(data.username);
+        //     login( {username: data.username} ).catch(() =>
+        //         notify('Invalid email or password')
+        //     );
+        //     console.log(data)
+        // })
+        // .catch((e) => {
+        //     console.log(e)
+        // });
+
+        if(Cookie.get('access_token')){
+            window.location.href = '/';
+        }
+
     }, []);
 
     const handleSubmit = (auth: FormValues) => {
         setLoading(true);
-        login(
-            auth,
-            location.state ? (location.state as any).nextPathname : '/'
-        ).catch((error: Error) => {
-            setLoading(false);
-            notify(
-                typeof error === 'string'
-                    ? error
-                    : typeof error === 'undefined' || !error.message
-                    ? 'ra.auth.sign_in_error'
-                    : error.message,
-                {
-                    type: 'error',
-                    messageArgs: {
-                        _:
-                            typeof error === 'string'
-                                ? error
-                                : error && error.message
-                                ? error.message
-                                : undefined,
-                    },
-                }
-            );
-        });
+
+
+
+        // login(
+        //     auth,
+        //     location.state ? (location.state as any).nextPathname : '/'
+        // ).catch((error: Error) => {
+        //     setLoading(false);
+        //     notify(
+        //         typeof error === 'string'
+        //             ? error
+        //             : typeof error === 'undefined' || !error.message
+        //             ? 'ra.auth.sign_in_error'
+        //             : error.message,
+        //         {
+        //             type: 'error',
+        //             messageArgs: {
+        //                 _:
+        //                     typeof error === 'string'
+        //                         ? error
+        //                         : error && error.message
+        //                         ? error.message
+        //                         : undefined,
+        //             },
+        //         }
+        //     );
+        // });
     };
 
     return (
@@ -160,7 +170,19 @@ const Login = () => {
                             fullWidth
                             type="submit"
                             startIcon={<MicrosoftIcon />}
-                            // onClick={() => window.location.href = import.meta.env.VITE_BACK_END_URL+'/auth/signin'}
+                            onClick={() => {
+                                fetch(import.meta.env.VITE_BACK_END_URL+'/api/v1/login', {
+                                    method: 'GET'
+                                })
+                                .then(response => response.json())
+                                .then((data) => {
+                                    window.location.href = data.url;
+                                })
+                                .catch((e) => {
+                                    console.log(e)
+                                }
+                                );
+                            }}
                         >
                             {"Sign In with Microsoft"}
                         </Button>
