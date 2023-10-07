@@ -7,7 +7,7 @@ help:
 # Test if the dependencies we need to run this Makefile are installed
 DOCKER := $(shell command -v docker)
 
-CMD_PREFIX := sudo docker run -it --rm -u "$(shell id -u):$(shell id -g)" --network host -v "$(shell pwd)":/app -w /app node:18 
+CMD_PREFIX := sudo docker run -it --rm -u "$(shell id -u):$(shell id -g)" --name frontend --network ecesis -v "$(shell pwd)":/app -w /app node:18 
 
 ifndef DOCKER
 $(info ##################################################)
